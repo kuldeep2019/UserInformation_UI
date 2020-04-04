@@ -4,11 +4,28 @@
   <meta charset="utf-8">
   <title>UserInformation</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="558266834723-ku2ag4dmt032k2av402sg9hc3kau9frp.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js"></script>
+  <script>
+      function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+    </script>
 </head>
 <body>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
   <app-root></app-root>
 </body>
 </html>
