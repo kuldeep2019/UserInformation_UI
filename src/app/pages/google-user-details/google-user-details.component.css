@@ -1,0 +1,14 @@
+#uploadContainer{
+    border-style: dashed;
+    border-color: #707070;
+}
+#container {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #content {
+    flex: 0 0 120px;
+  }
