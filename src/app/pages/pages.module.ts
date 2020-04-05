@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { GoogleUserInfoFormComponent } from './google-user-info-form/google-user-info-form.component';
 import { FacebookUserInfoFormComponent } from './facebook-user-info-form/facebook-user-info-form.component';
@@ -20,6 +21,8 @@ const routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [LoginComponent, GoogleUserInfoFormComponent, FacebookUserInfoFormComponent]
