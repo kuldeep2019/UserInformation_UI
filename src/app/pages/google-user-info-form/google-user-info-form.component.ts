@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import 'rxjs/Rx';
 @Component({
   selector: 'app-google-user-info-form',
   templateUrl: './google-user-info-form.component.html',
@@ -11,13 +12,14 @@ import { ActivatedRoute } from '@angular/router';
 export class GoogleUserInfoFormComponent implements OnInit {
   country: { value: string; }[];
 
-  constructor(private fb: FormBuilder, private router: Router,private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private router: Router,private httpClient: HttpClient,private route: ActivatedRoute) { }
   form: FormGroup;
   fullName;
   email;
   photo;
   file;
   fd;
+  urlPort = 'https://localhost:3000'
   fileDetail: any = {};
   ngOnInit() {
     this.country = [{
@@ -47,7 +49,13 @@ export class GoogleUserInfoFormComponent implements OnInit {
 
 
   formSubmit(data) {
-
+    this.httpClient.post(this.urlPort + "/api/googleUserInfo", data)
+    .map(
+      (response) => response
+    )
+    .catch((err) => {
+     console.log(err)
+    })
  
   }
   //upload AadharCard
