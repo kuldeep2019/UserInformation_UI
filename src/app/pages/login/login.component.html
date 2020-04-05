@@ -1,25 +1,29 @@
-<p>
-  login works!
-</p>
 
-<div class="auth-wrapper d-flex no-block ">
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-xl-3 shadow p-3" style="height:auto;">
-      <div id="loginform">
-                      <h2 style="margin-top:30px; font-size:24px;margin-bottom:20px">Login</h2>
-                      <div class="row">
-                          <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                              <div class="social">
-                                  <a href="https://localhost:3000/auth/facebook" class="btn  btn-facebook" data-toggle="tooltip" title=""
-                                      data-original-title="Login with Facebook">
-                                      <i aria-hidden="true" class="fab  fa-facebook"></i>
-                                  </a>
+      <div>
+                      <div>
+                      <div class="col-md-10">
+                            <div class="row" style="margin-left:10%;margin-top:5%">
+                                    <div class="col-md-12">
+                                            <label style="font-style:Helvetica Neue;font-size: 22px;color:#4A4646"><b>Welcome,</b></label>
+                                        </div>
+                                        </div>
+                            
+                      <div class="row" style="margin-left:10%;margin-top:5%">
+                        <div class="col-md-6"><button class="btn" style="width:80%;background-color: #395794;" (click)="facebookButton.click()">
+                                <a href="https://localhost:3000/auth/facebook" class="btn  btn-facebook" data-toggle="tooltip" title=""
+                                data-original-title="Login with Facebook" #facebookButton>
+                                <span style="color:white;font-size:20px;font-style:Helvetica Neue"><b>Sign in with Facebook</b></span>
+                            </a>
+                          </button></div>
+                          <div class="col-md-6">
+                              <button class="btn" style="width:80%;background-color: #D74937;" (click)="googleButton.click()">
                                   <a href="https://localhost:3000/auth/google" class="btn btn-googleplus"
-                                      data-toggle="tooltip" title="" data-original-title="Login with Google">
-                                      <i aria-hidden="true" class="fab  fa-google-plus"></i>
+                                      data-toggle="tooltip" title="" data-original-title="Login with Google" #googleButton>
+                                      <span style="color:white;font-size:20px;font-style:Helvetica Neue"><b>Sign in with Google</b></span>
                                   </a>
-                              </div>
+                                  </button>
+                                  </div>
                           </div>
-                      </div>
+                          </div>
+                          </div>
       </div>
-  </div>
-</div>
