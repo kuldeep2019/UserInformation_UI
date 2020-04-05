@@ -15,6 +15,9 @@ export class GoogleUserInfoFormComponent implements OnInit {
   fullName;
   email;
   photo;
+  file;
+  fd;
+  fileDetail: any = {};
   ngOnInit() {
     this.form = this.fb.group({
       fullName: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z0-9-s]{1,20}")])],
@@ -30,10 +33,34 @@ export class GoogleUserInfoFormComponent implements OnInit {
     });
    
   }
+  //submit Form
   formSubmit(data) {
 
  
   }
-  
+  //upload AadharCard
+  onSelectFile(event :EventTarget){
+    
+
+    console.log("In getFile",event);
+    
+    let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
+    let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
+    let files: FileList = target.files;
+    this.file = files[0];
+    this.file = target.files[0]
+    console.log("this.file.name",this.file.name)
+    this.fileDetail['originalname'] = this.file.name;
+    this.fileDetail['size'] = this.file.size;
+    this.fileDetail['fileType'] = this.file.type;
+    this.fileDetail['type'] = "document"; 
+    this.fd = new FormData();
+    this.fd.append('fileName',this.file.name);
+    this.fd.append('upfile', this.file);
+    this.fd.append('fileType', this.file.type);
+    this.fd.append('lastModified', (new Date(this.file.lastModified)).toString());
+    // var path="/invoice/"+this.fd.get('fileName')+"/"+this.fd.get('supplierId');
+   
+  }
 
 }
