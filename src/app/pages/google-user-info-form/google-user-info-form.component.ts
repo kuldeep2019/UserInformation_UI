@@ -39,6 +39,8 @@ export class GoogleUserInfoFormComponent implements OnInit {
       mobileNo : [null, Validators.compose([Validators.required, Validators.pattern("0,11")])],
       nationality : [null, Validators.compose([Validators.required, Validators.pattern("")])],
     })
+
+    //google Info
     this.route.queryParams.subscribe(params => {
       this.fullName = params['fullName'];
       this.email = params['email'];
@@ -48,46 +50,28 @@ export class GoogleUserInfoFormComponent implements OnInit {
    
   }
   //submit Form
-
-
   formSubmit(data) {
-    // this.httpClient.post(this.urlPort + "/api/googleUserInfo", data)
-    // .map(
-    //   (response) => response
-    // )
-    // .catch((err) => {
-    //  console.log(err)
-    // })
+    this.httpClient.post(this.urlPort + "/api/googleUserInfo", data)
+    .map(
+      (response) => response
+    )
+    .catch((err) => {
+      return Observable.throw(err)
+    })
  
   }
   //upload AadharCard
   uploadedFile(event){
-    
     var file = event.target.files[0];
     console.log("In getFile",file);
-    
-    // let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
-    // let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
-    // let files: FileList = target.files;
-    // this.file = files[0];
-    // this.file = target.files[0]
-    // console.log("this.file.name",this.file.name)
-    // this.fileDetail['originalname'] = this.file.name;
-    // this.fileDetail['size'] = this.file.size;
-    // this.fileDetail['fileType'] = this.file.type;
-    // this.fileDetail['type'] = "document"; 
     var fd = new FormData();
-    // this.fd.append('fileName',this.file.name);
-    // this.fd.append('upfile', this.file);
-    // this.fd.append('fileType', this.file.type);
-    // this.fd.append('lastModified', (new Date(this.file.lastModified)).toString());
     fd.append('file', file, file['name']);
     this.http.post(this.urlPort + "/api/fileOperations/upload",fd)
       .catch((err) => {
         return Observable.throw(err)
       })
       .subscribe(res=> {
-        console.log("file uploaded")
+        console.log("file uploaded",res)
       })
    
   }
