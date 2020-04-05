@@ -13,10 +13,10 @@
         </div>
         <div class="form-group row col-md-12">
           <div class="col-md-4">
-            <!-- <div style="width: 824px; height: 464px;">
-              <img src="img_avatar.png" alt="Avatar" class="image">
-            </div> -->
-            
+            <div>
+              <img style="width: 150px; height: 150px;" src="https://lh3.googleusercontent.com/a-/AOh14GiGNohf_hKsG8O395CBfzaYRc4j4d75Me8DWy-3" alt="Avatar" class="image">
+            </div>
+            <br/>
             <!-- <input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture> -->
             <h5 class="text-left">Kindly help us with the following information</h5><br>
           </div>
@@ -25,15 +25,15 @@
         </div>
         <div class="form-group row col-md-12">
           <div class="col-md-4">
-            <label for="fullName" class="form-control-label">FullName:</label>
-            <input type="text" name="fullName" formControlName="fullName" class="form-control">
+            <!-- <label for="fullName" class="form-control-label">FullName:</label> -->
+            <input type="text" placeholder="Full Name" name="fullName" formControlName="fullName" class="form-control">
             <div class="alert alert-danger"
               *ngIf="form.get('fullName').hasError('required') && form.get('fullName').touched">FullName is required
             </div>
           </div>
           <div class="col-md-4">
-            <label for="email" class="form-control-label">Email Id:</label>
-            <input type="text" name="email" formControlName="email" class="form-control">
+            <!-- <label for="email" class="form-control-label">Email Id:</label> -->
+            <input type="text" placeholder="Email ID" name="email" formControlName="email" class="form-control">
             <div class="alert alert-danger" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
               Email Id is required</div>
           </div>
@@ -43,21 +43,20 @@
         </div>
           <div class="form-group row col-md-12">
             <div class="col-md-4">
-              <label for="mobileNo" class="form-control-label">Mobile Number:</label>
-              <input type="text" name="mobileNo" formControlName="mobileNo" class="form-control">
+              <!-- <label for="mobileNo" class="form-control-label">Mobile Number:</label> -->
+              <input type="text" placeholder="Mobile Number" name="mobileNo" formControlName="mobileNo" class="form-control">
               <div class="alert alert-danger"
                 *ngIf="form.get('mobileNo').hasError('required') && form.get('mobileNo').touched">Mobile Number is
                 required
               </div>
             </div>
             <div class="col-md-4">
-              <label for="nationality">Nationality:</label>
+              <!-- <label for="nationality">Nationality:</label> -->
             <div>
               <select id="nationality" formControlName="nationality" class="form-control">
-                <option value="India">India</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                  <option value="" disabled selected="selected">Nationality</option>
+                <option *ngFor="let i of country" value="{{i.value}}">{{i.value}}</option>
+              
               </select>
             </div>
              
@@ -72,12 +71,20 @@
           
         </div>
         <div class="form-group row col-md-12">
-          
-        <div class="form-group row col-md-6">
-          <label for="myfile">Select a file:</label>
-          <input type="file"  (change)="onSelectFile($event)" #fileInput><br><br>
-        </div>
-        <div class="form-group row col-md-6"></div>
+            <div class="col-md-8">
+                <div id="uploadContainer" (click)="aadharUpload.click()">
+                  <div class="row" style="margin-top:1%">
+                      <div class="col-md-8">
+                          <label style="float: right;
+                          vertical-align: middle;"><b style="font-style:Helvetica Neue;color:#ADACB2">Add your Aadhaar Front (.pdf,.jpg,.png)</b></label>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="text-align: center;"><b style="font-style:Helvetica Neue;color:#0B66FC">Browse</b></label>
+                  </div>
+                  </div>  
+                    <input hidden type="file" (change)="uploadedFile($event.target.files)" #aadharUpload>
+                  </div>
+            </div>
         </div>
         <div class="form-group row">
           <div class="col-md-5">
