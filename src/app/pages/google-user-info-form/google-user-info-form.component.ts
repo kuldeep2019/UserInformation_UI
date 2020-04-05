@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/Rx';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 @Component({
   selector: 'app-google-user-info-form',
   templateUrl: './google-user-info-form.component.html',
@@ -12,7 +14,7 @@ import 'rxjs/Rx';
 export class GoogleUserInfoFormComponent implements OnInit {
   country: { value: string; }[];
 
-  constructor(private fb: FormBuilder, private router: Router,private httpClient: HttpClient,private route: ActivatedRoute) { }
+  constructor(private http: Http,private fb: FormBuilder, private router: Router,private httpClient: HttpClient,private route: ActivatedRoute) { }
   form: FormGroup;
   fullName;
   email;
@@ -49,37 +51,44 @@ export class GoogleUserInfoFormComponent implements OnInit {
 
 
   formSubmit(data) {
-    this.httpClient.post(this.urlPort + "/api/googleUserInfo", data)
-    .map(
-      (response) => response
-    )
-    .catch((err) => {
-     console.log(err)
-    })
+    // this.httpClient.post(this.urlPort + "/api/googleUserInfo", data)
+    // .map(
+    //   (response) => response
+    // )
+    // .catch((err) => {
+    //  console.log(err)
+    // })
  
   }
   //upload AadharCard
-  uploadedFile(event :EventTarget){
+  uploadedFile(event){
     
-
-    console.log("In getFile",event);
+    var file = event.target.files[0];
+    console.log("In getFile",file);
     
-    let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
-    let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
-    let files: FileList = target.files;
-    this.file = files[0];
-    this.file = target.files[0]
-    console.log("this.file.name",this.file.name)
-    this.fileDetail['originalname'] = this.file.name;
-    this.fileDetail['size'] = this.file.size;
-    this.fileDetail['fileType'] = this.file.type;
-    this.fileDetail['type'] = "document"; 
-    this.fd = new FormData();
-    this.fd.append('fileName',this.file.name);
-    this.fd.append('upfile', this.file);
-    this.fd.append('fileType', this.file.type);
-    this.fd.append('lastModified', (new Date(this.file.lastModified)).toString());
-    // var path="/invoice/"+this.fd.get('fileName')+"/"+this.fd.get('supplierId');
+    // let eventObj: MSInputMethodContext = <MSInputMethodContext>event;
+    // let target: HTMLInputElement = <HTMLInputElement>eventObj.target;
+    // let files: FileList = target.files;
+    // this.file = files[0];
+    // this.file = target.files[0]
+    // console.log("this.file.name",this.file.name)
+    // this.fileDetail['originalname'] = this.file.name;
+    // this.fileDetail['size'] = this.file.size;
+    // this.fileDetail['fileType'] = this.file.type;
+    // this.fileDetail['type'] = "document"; 
+    var fd = new FormData();
+    // this.fd.append('fileName',this.file.name);
+    // this.fd.append('upfile', this.file);
+    // this.fd.append('fileType', this.file.type);
+    // this.fd.append('lastModified', (new Date(this.file.lastModified)).toString());
+    fd.append('file', file, file['name']);
+    this.http.post(this.urlPort + "/api/fileOperations/upload",fd)
+      .catch((err) => {
+        return Observable.throw(err)
+      })
+      .subscribe(res=> {
+        console.log("file uploaded")
+      })
    
   }
 
