@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./google-user-info-form.component.css']
 })
 export class GoogleUserInfoFormComponent implements OnInit {
+  country: { value: string; }[];
 
   constructor(private fb: FormBuilder, private router: Router,private route: ActivatedRoute) { }
   form: FormGroup;
@@ -16,6 +17,15 @@ export class GoogleUserInfoFormComponent implements OnInit {
   email;
   photo;
   ngOnInit() {
+    this.country = [{
+      value:"India"
+    },{
+      value:"Russia"
+    },{
+      value:"China"
+    },{
+      value:"Japan"
+    }]
     this.form = this.fb.group({
       fullName: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z0-9-s]{1,20}")])],
       email: [null, Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])],
@@ -30,6 +40,11 @@ export class GoogleUserInfoFormComponent implements OnInit {
     });
    
   }
+
+  uploadedFile(event){
+    console.log("event: ",event)
+  }
+
   formSubmit(data) {
 
  
