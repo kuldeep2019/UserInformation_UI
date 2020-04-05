@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Http } from '@angular/http';
+import { saveAs } from 'file-saver';
 import { Observable } from 'rxjs/Rx';
 @Component({
   selector: 'app-google-user-info-form',
@@ -20,6 +21,7 @@ export class GoogleUserInfoFormComponent implements OnInit {
   email;
   photo;
   file;
+  filename;
   fd;
   urlPort = 'https://localhost:3000'
   fileDetail: any = {};
@@ -48,6 +50,17 @@ export class GoogleUserInfoFormComponent implements OnInit {
       console.log("params: ",this.fullName,this.email,this.photo)
     });
    
+    this.filename = 'sample.pdf'
+    var data = {
+      fileName: this.filename
+    }
+    this.httpClient.post(this.urlPort + "/api/fileOperations/download",data, { responseType: "blob"})
+      .catch((err) => {
+        return Observable.throw(err)
+      })
+      .subscribe(res => {
+        saveAs(res, this.filename)
+      })
   }
   //submit Form
   formSubmit(data) {
