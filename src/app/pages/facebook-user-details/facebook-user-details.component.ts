@@ -42,7 +42,10 @@ export class FacebookUserDetailsComponent implements OnInit {
       nationality: [null, Validators.compose([Validators.required])],
     })
     //Get User Details
-    this.httpClient.post(this.urlPort + "/api/getfacebookUserInfo/getfacebookUserInfo",this.userName)
+    var getUser = {
+      userName: this.userName
+    }
+    this.httpClient.post(this.urlPort + "/api/getfacebookUserInfo/getfacebookUserInfo",getUser)
     .map(
       (response) => response
     )

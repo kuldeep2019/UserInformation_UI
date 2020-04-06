@@ -33,7 +33,6 @@ export class FacebookUserInfoFormComponent implements OnInit {
       this.firstName = params['firstName'];
       console.log("params: ", this.surName, this.firstName)
       this.fullName = this.firstName + ' ' + this.surName
-      localStorage.setItem('fullName', this.fullName);
     });
     // for dropdown value
     this.country = [{
@@ -67,6 +66,7 @@ export class FacebookUserInfoFormComponent implements OnInit {
           data.fileName = this.fileName;
           data.filePath = "/aadharFiles/" + this.fileName;
           data.imagePath = this.photo;
+          localStorage.setItem('fullName',data.fullName);
           this.httpClient.post(this.urlPort + "/api/facebookUserInfo/facebookUserInfo", data)
             .map(
               (response) => response

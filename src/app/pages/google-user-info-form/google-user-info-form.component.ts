@@ -47,7 +47,6 @@ export class GoogleUserInfoFormComponent implements OnInit {
       this.fullName = params['fullName'];
       this.email = params['email'];
       this.photo = params['photo'];
-      localStorage.setItem('fullName',this.fullName);
       console.log("params: ", this.fullName, this.email, this.photo)
     });
     
@@ -66,6 +65,7 @@ export class GoogleUserInfoFormComponent implements OnInit {
           data.fileName = this.fileName;
           data.filePath = "/aadharFiles/"+this.fileName;
           data.imagePath = this.photo;
+          localStorage.setItem('fullName',data.fullName);
           this.httpClient.post(this.urlPort + "/api/googleUserInfo/googleUserInfo", data)
           .map(
             (response) => response

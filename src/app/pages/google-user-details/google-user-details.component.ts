@@ -40,7 +40,10 @@ export class GoogleUserDetailsComponent implements OnInit {
       nationality: [null, Validators.compose([Validators.required])],
     })
     //Get User Details
-    this.httpClient.post(this.urlPort + "/api/getUserDetails/getUserDetails",this.userName)
+    var getUser = {
+      userName: this.userName
+    }
+    this.httpClient.post(this.urlPort + "/api/getUserDetails/getUserDetails",getUser)
     .map(
       (response) => response
     )
