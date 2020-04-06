@@ -1,3 +1,99 @@
-<p>
-  facebook-user-info-form works!
-</p>
+<div class="container"><br>
+  <form [formGroup]="form" (ngSubmit)="formSubmit(form.value)">
+   <!-- <div class="form-group row col-md-12"> -->
+      <!-- <div class="form-group row col-md-8"> -->
+        <div class="form-group row col-md-12">
+          <div class="col-md-4">
+            <h3 class="text-left">Welcome,</h3>
+            <h3 class="text-left">{{fullName}} </h3>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+
+        </div>
+        <div class="form-group row col-md-12">
+          <div class="col-md-4">
+            <div>
+              <img style="width: 150px; height: 150px;" src="https://lh3.googleusercontent.com/a-/AOh14GiGNohf_hKsG8O395CBfzaYRc4j4d75Me8DWy-3" alt="Avatar" class="image">
+            </div>
+            <br/>
+            <h5 class="text-left">Kindly help us with the following information</h5><br>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4"></div>
+        </div>
+        <div class="form-group row col-md-12">
+          <div class="col-md-4">
+            <input type="text" placeholder="Full Name" name="fullName" formControlName="fullName" class="form-control">
+            <div class="alert alert-danger"
+              *ngIf="form.get('fullName').hasError('required') && form.get('fullName').touched">FullName is required
+            </div>
+          </div>
+          <div class="col-md-4">
+            <input type="text" placeholder="Email ID" name="email" formControlName="email" class="form-control">
+            <div class="alert alert-danger" *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+              Email Id is required</div>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+          <div class="form-group row col-md-12">
+            <div class="col-md-4">
+              <input type="text" placeholder="Mobile Number" name="mobileNo" formControlName="mobileNo" class="form-control">
+              <div class="alert alert-danger"
+                *ngIf="form.get('mobileNo').hasError('required') && form.get('mobileNo').touched">Mobile Number is
+                required
+              </div>
+            </div>
+            <div class="col-md-4">
+            <div>
+              <select id="nationality" formControlName="nationality" class="form-control">
+                  <option value="" disabled selected="selected">Nationality</option>
+                <option *ngFor="let i of country" value="{{i.value}}">{{i.value}}</option>
+              
+              </select>
+            </div>
+              <div class="alert alert-danger"
+                *ngIf="form.get('nationality').hasError('required') && form.get('nationality').touched">
+                Nationality is required</div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+          
+        </div>
+        <div class="form-group row col-md-12">
+            <div class="col-md-8">
+                <div id="uploadContainer" (click)="aadharUpload.click()" >
+                  <div class="row" style="margin-top:1%">
+                      <div class="col-md-8">
+                          <label style="float: right;
+                          vertical-align: middle;"><b style="font-style:Helvetica Neue;color:#ADACB2">Add your Aadhaar Front (.pdf,.jpg,.png)</b></label>
+                          <div style="text-align: center">{{fileName}}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label style="text-align: center;"><b style="font-style:Helvetica Neue;color:#0B66FC">Browse</b></label>
+                  </div>
+                  </div>  
+                    <input hidden type="file" (change)="uploadedFile($event)" #aadharUpload>
+                  </div>
+                  
+            </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary"    type="submit">Submit</button>
+          </div>
+        </div>
+      <!-- </div> -->
+      <div class="form-group row col-md-4">
+      </div>
+   <!-- </div> -->
+
+  </form>
+
+</div>

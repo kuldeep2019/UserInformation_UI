@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { saveAs } from 'file-saver';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
-  selector: 'app-google-user-details',
-  templateUrl: './google-user-details.component.html',
-  styleUrls: ['./google-user-details.component.css']
+  selector: 'app-facebook-user-details',
+  templateUrl: './facebook-user-details.component.html',
+  styleUrls: ['./facebook-user-details.component.css']
 })
-export class GoogleUserDetailsComponent implements OnInit {
+export class FacebookUserDetailsComponent implements OnInit {
+
   urlPort = 'https://localhost:3000';
   constructor(private httpClient: HttpClient,private fb: FormBuilder) { }
   form: FormGroup;
@@ -40,7 +42,7 @@ export class GoogleUserDetailsComponent implements OnInit {
       nationality: [null, Validators.compose([Validators.required])],
     })
     //Get User Details
-    this.httpClient.post(this.urlPort + "/api/getUserDetails/getUserDetails",this.userName)
+    this.httpClient.post(this.urlPort + "/api/getfacebookUserInfo/getfacebookUserInfo",this.userName)
     .map(
       (response) => response
     )

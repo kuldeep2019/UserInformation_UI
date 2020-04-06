@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { GoogleUserInfoFormComponent } from './google-user-info-form/google-user-info-form.component';
 import { FacebookUserInfoFormComponent } from './facebook-user-info-form/facebook-user-info-form.component';
 import { GoogleUserDetailsComponent } from './google-user-details/google-user-details.component';
+import { FacebookUserDetailsComponent } from './facebook-user-details/facebook-user-details.component';
 const routes = [
 {
     path     : 'pages/login',
@@ -24,6 +25,10 @@ const routes = [
 {
   path     : 'pages/facebook-UserInfo-Form',
   component: FacebookUserInfoFormComponent
+},
+{
+  path     : 'pages/facebook-UserDetails',
+  component: FacebookUserDetailsComponent
 }];
 @NgModule({
   imports: [
@@ -34,6 +39,6 @@ const routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginComponent, GoogleUserInfoFormComponent, FacebookUserInfoFormComponent, GoogleUserDetailsComponent]
+  declarations: [LoginComponent, GoogleUserInfoFormComponent, FacebookUserInfoFormComponent, GoogleUserDetailsComponent, FacebookUserDetailsComponent]
 })
 export class PagesModule { }
